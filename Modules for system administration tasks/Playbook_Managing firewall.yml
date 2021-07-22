@@ -1,0 +1,43 @@
+---
+# Open/Block port 80 in firewalld
+
+- name: Open/Block port 80 in firewalld
+  host: all
+  become: yes
+
+  tasks:
+    - firewalld:
+        port: 80/tcp
+        permanent: yes  ##imediate: yes
+        state: enabled
+
+---
+## To specify the addresses allowed, use the source: 0.0.0.0/0 statement
+
+    - firewalld: 
+        source: 192.168.0.0/24
+        zone: public
+        state: enabled
+
+## To specify a range of ports to be allowed to use the port option as follows
+
+    - firewalld:
+        port: 213-567/udp
+        permanent: yes
+        state: enabled
+
+## To block the port change the state option to disabled as shown
+
+    - firewalld:
+        port: 80/tcp
+        permanent: yes
+        state: disabled
+
+## Add/block a service in firewalld
+
+    - firewalld:
+        service: httpd
+        permanent: true
+        state: enabled ## state: disabled
+
+

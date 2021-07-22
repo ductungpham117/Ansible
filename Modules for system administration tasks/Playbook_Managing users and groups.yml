@@ -1,0 +1,29 @@
+---
+
+- name: Create new user
+  hosts: all
+  become: yes
+
+  task:
+    - name: Create a user
+      user: 
+        name: jack
+        comment: Jack William
+        uid: 1001
+        group: administrators
+        shell: /bin/bash
+
+## Remove user
+
+    - name: Remove the user
+      user: 
+        name: jack
+        state: absent
+        remove: yes
+
+## Create new group
+
+    - name: Create a new group
+      group: 
+        name: developers
+        

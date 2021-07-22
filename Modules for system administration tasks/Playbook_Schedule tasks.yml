@@ -1,0 +1,20 @@
+---
+#Create a scheduled task
+
+- name: Scheduled task
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create a schedule
+      cron:
+        name: Run employee attendance
+        job: sh /opt/scripts/attendance.sh
+
+        month: 4
+        day: 5
+        hour: 17 ## */5 to execute this job every 5 hours
+        minute: 00
+        weekday: * ## indicates any value
+
+

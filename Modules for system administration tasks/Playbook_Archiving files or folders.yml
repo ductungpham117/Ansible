@@ -1,0 +1,40 @@
+---
+## Compress a Directory
+
+- name: Compress a Directory
+  hosts: all
+  become: yes
+
+  tasks:
+  - archive:
+      path: /opt/data/web
+      dest: /tmp/web.gz
+
+## Compress a Directory with Format
+
+  - archive:
+      path: /opt/data/web
+      dest: /tmp/web
+      format: zip
+
+## Uncompress a File
+
+  - name: Uncompress /tmp/web.gz to /opt directory
+    unarchive:
+      src: /tmp/
+      dest: /opt
+
+## Uncompress a File on Remote Node
+
+---
+
+- name: uncompress a file on remote node
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Uncompress a file on remote node
+      unarchive:
+        src: /tmp/web.bz2
+        dest: /opt/
+        remote_src=yes

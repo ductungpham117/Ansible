@@ -1,0 +1,26 @@
+---
+
+- name: Create new directory
+  host: all
+  become: yes
+
+  tasks:
+    - name: Create new directory
+      file: 
+        path: /opt/app
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0644
+
+## Create a file
+
+- name: Create a new file
+  file: 
+    path: /opt/web/index.html
+    state: touch
+    owner: www-data
+    group: www-data
+    mode: 0644
+    
+
