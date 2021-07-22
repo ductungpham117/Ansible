@@ -1,0 +1,19 @@
+
+mspearson2
+
+[labservers]
+mspearson[3:6]c.mylabserver.com
+
+[webserver]
+mspearson3c.mylabserver.com
+mspearson4c.mylabserver.com
+
+[dbservers]
+mspearson5c.mylabserver.com
+mspearson6c.mylabserver.com
+
+###### file in host_vars
+
+---
+
+ansible_host: mspearson2c.mylabserver.com

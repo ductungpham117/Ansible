@@ -1,0 +1,9 @@
+---
+
+- name: Copy required DBA files
+     copy:
+      src: /root/DBAstuff.txt
+      dest: /home/dba
+      owner: dba
+      group: dba
+      mode: 0600

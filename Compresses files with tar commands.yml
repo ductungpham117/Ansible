@@ -1,0 +1,5 @@
+for i in webserver1 dbserver1 adminserver1;
+   do ssh ansible@$i "sudo tar -czf messages.tar.gz /var/log/messages";
+done
+
+ansible -m fetch -a "src=/home/ansible/messages.tar.gz dest=/tmp/messages" all

@@ -1,0 +1,14 @@
+---
+#Conditional Playbook
+
+- name: Conditional Playbook
+  hosts: all
+  become: yes
+
+  tasks: 
+    - name: Install backup package
+      yum:
+        name: linuxacademy_backup_package
+        state: present
+      ignore_errors: true
+      

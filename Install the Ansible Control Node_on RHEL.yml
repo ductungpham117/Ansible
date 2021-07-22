@@ -1,0 +1,6 @@
+dnf install git
+git clone --single-branch --branch stable-2.8 https://github.com/ansible/ansible.git
+source ./hacking/env-setup
+pip2.7 install --user -r./requirements.txt
+ansible localhost -m ping
+

@@ -1,0 +1,11 @@
+---
+
+- name: DB server playbook
+  become: yes
+  hosts: dbservers
+
+  tasks: 
+   - name: Add the 'dba' user to the dbservers
+     user:
+      name: dba
+      

@@ -1,0 +1,45 @@
+# Software playbook
+#
+
+- name: Install required software
+  hosts: all
+  become: yes
+
+  tasks:
+   - yum:
+      name: "{{ packages }}"
+      state: present
+     vars:
+       packages:
+        - httpd
+        - git
+        - tcpdump
+        - php
+
+   - service:
+      name: httpd
+      state: started
+      enabled: yes
+
+##### Remove software
+#
+
+- name: Remove required software
+  hosts: all
+  become: yes
+
+  tasks:
+   - yum:
+      name: "{{ packages }}"
+      state: absent
+     vars:
+       packages:
+        - httpd
+        - git
+        - tcpdump
+        - php
+
+   - service:
+      name: httpd
+      state: started
+      enabled: no

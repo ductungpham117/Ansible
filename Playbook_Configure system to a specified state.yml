@@ -1,0 +1,49 @@
+---
+hosts: webservers
+become: yes
+tasks: 
+    - name: install apache
+      yum:
+        name: httpd
+        state: latest
+    - name: create a user and add them to the apache group
+      user: 
+        name: "{{ item }}"
+        group: apache
+      loop:
+        - will
+        - myles
+    - name: create index.html
+      template:
+        src: /home/cloud_user/ansible_templates/index.j2
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: 0644
+    - name: start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+  - host: dbservers
+    become: yes
+    task:
+      - name: install postgresql
+        yum:
+          name: postgresql-server
+          state: latest
+      - name: create users
+        user: 
+          name: "{{ item }}"
+          groups: posgresql 
+        loop:
+         - corey
+         - aaron
+      -name: start and enable posgresql
+       service: 
+        name: postgresql
+        state: started
+        enabled: yes
+
+
+    

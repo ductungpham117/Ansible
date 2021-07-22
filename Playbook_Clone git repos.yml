@@ -1,0 +1,16 @@
+---
+
+- name: Use git to clone the Ansible repos
+  hosts: admins
+  become: yes
+
+  tasks:
+    - name: Install git
+      yum:
+        name: git
+        state: present
+
+    - name: Use the git module
+      git: 
+        repo: https://github.com/ansible/ansible.git
+        dest: /opt
